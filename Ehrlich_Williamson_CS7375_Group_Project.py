@@ -173,6 +173,20 @@ print(classification_report(y_test, y_pred))
 print("\nAccuracy Score:")
 print(accuracy_score(y_test, y_pred))
 
+# The SVC classifier with SMOTE resampled data
+svc_clf = Pipeline([("scaler", StandardScaler()),
+                   ("svc", SVC(kernel="linear", C=1))])
+svc_clf.fit(X_resampled, y_resampled)
+y_pred = svc_clf.predict(X_test)
+
+# Evaluate the model's performance
+print("Confusion Matrix when using SVC with SMOTE-resampled Data:")
+print(confusion_matrix(y_test, y_pred))
+print("\nClassification Report when using SVC with SMOTE-resampled Data::")
+print(classification_report(y_test, y_pred))
+print("\nAccuracy Score:")
+print(accuracy_score(y_test, y_pred))
+
 
 # This section generates a figure showing the confusion matrix after SVC with labels-just a clearer way to view data
 class_labels = ['Dog Bark', 'Not Dog Bark']
